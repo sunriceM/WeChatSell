@@ -4,6 +4,7 @@ import com.sun.org.apache.regexp.internal.RE;
 import com.sunrise.dto.OrderDTO;
 import com.sunrise.entity.OrderDetail;
 import com.sunrise.enums.OrderStatusEnum;
+import com.sunrise.enums.PayStatusEnum;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -12,6 +13,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.test.context.junit4.SpringRunner;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -76,9 +78,16 @@ public class OrderServiceImplTest {
 
     @Test
     public void finish() {
+        OrderDTO orderDTO = orderService.findOne(ORDER_ID);
+        OrderDTO result = orderService.finish(orderDTO);
+        assertEquals(OrderStatusEnum.FINISHED.getCode(), result.getOrderStatus());
+
     }
 
     @Test
     public void paid() {
+        OrderDTO orderDTO = orderService.findOne(ORDER_ID);
+        OrderDTO result = orderService.paid(orderDTO);
+        assertEquals(PayStatusEnum.SUCCESS.getCode(), result.getPayStatus());
     }
 }
