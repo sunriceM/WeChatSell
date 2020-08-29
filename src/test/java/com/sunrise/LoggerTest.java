@@ -24,11 +24,6 @@ public class LoggerTest {
 
     @Test
     public void test1() {
-        String ch = "ch";
-        String s = "我爱你";
-        String e = "我没有勇气";
-        log.debug("debug");
-        log.info("info" + ch + s);
-        log.error("error" + e);
+
     }
 }

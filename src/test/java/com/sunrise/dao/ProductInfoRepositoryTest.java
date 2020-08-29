@@ -36,6 +36,15 @@ public class ProductInfoRepositoryTest {
         assertNotNull(result);
     }
 
+
+    @Test
+    public void findTest() {
+
+        ProductInfo result = repository.findById("qwerasdfzxcv").orElse(null);
+        System.out.println(result);
+        assertNotNull(result);
+    }
+
     @Test
     public void findByProductStatus() {
         List<ProductInfo> productInfos = repository.findByProductStatus(0);

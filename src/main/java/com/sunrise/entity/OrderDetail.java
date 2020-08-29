@@ -1,5 +1,7 @@
 package com.sunrise.entity;
 
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+import com.sunrise.utils.serializer.Date2LongSerializer;
 import lombok.Data;
 
 import javax.persistence.Entity;
@@ -39,7 +41,9 @@ public class OrderDetail {
     /** 商品小图 */
     private String productIcon;
 
+    @JsonSerialize(using = Date2LongSerializer.class)
     private Date createTime;
 
+    @JsonSerialize(using = Date2LongSerializer.class)
     private Date updateTime;
 }
